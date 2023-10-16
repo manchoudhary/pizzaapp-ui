@@ -1,0 +1,128 @@
+import React, {useState} from 'react';
+import {HStack, Pressable, ScrollView, Text, VStack} from 'native-base';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
+import Popover from 'react-native-popover-view';
+import CustomIcon from '../../theme/icons/icon';
+import {colors, menuTypes, priceFilterTypes} from '../../constants';
+import Header from '../../components/Header';
+import {
+  DrinkSection,
+  FullDetailsPizzaSection,
+  ToggleSelector,
+} from '../../containers';
+import {useAppAccessor} from '../../hooks';
+
+export default function MenuList() {
+  const {getHome} = useAppAccessor();
+  const navigation = useNavigation();
+
+  const [currentMenuType, setCurrentMenuType] = useState(menuTypes[0]);
+  const [currentFilter, setCurrentFilter] = useState(priceFilterTypes[0]);
+
+  const {vegPizza, nonVegPizza, beverages} = getHome();
+
+  const FilterContainer = () => {
+    return (
+      <Popover
+        from={
+          <Pressable
+            bg={'black'}
+            my={4}
+            mr={4}
+            w={7}
+            borderRadius={6}
+            alignItems={'center'}
+            justifyContent={'center'}>
+            <Text color={'white'} fontWeight={'bold'}>
+              F
+            </Text>
+          </Pressable>
+        }>
+        <VStack>
+          {priceFilterTypes.map(filter => {
+            return (
+              <Pressable
+                px={4}
+                py={2}
+                bg={
+                  currentFilter.value === filter.value
+                    ? '#DDEDF3'
+                    : 'transparent'
+                }>
+                <Text>{filter.label}</Text>
+              </Pressable>
+            );
+          })}
+        </VStack>
+      </Popover>
+    );
+  };
+
+  return (
+    <VStack flex={1} bg={colors.white}>
+      <SafeAreaView style={{flex: 1}}>
+        <Header
+          left={
+            <HStack alignItems={'center'}>
+              <Pressable onPress={() => navigation.goBack()}>
+                <CustomIcon name={'BackIcon'} width={14} height={14} />
+              </Pressable>
+              <Text color={colors.black} fontSize={20} ml={2}>
+                Pizzaroma Menu
+              </Text>
+            </HStack>
+          }
+          right={
+            <HStack space={4} alignItems={'center'}>
+              <CustomIcon
+                name={'SearchIcon'}
+                width={20}
+                height={20}
+                fill={'transparent'}
+                stroke={'#1E5E77'}
+              />
+            </HStack>
+          }
+          my={2}
+        />
+
+        <HStack>
+          <HStack flex={1}>
+            <ToggleSelector
+              data={menuTypes}
+              active={currentMenuType}
+              onSelect={item => setCurrentMenuType(item)}
+            />
+          </HStack>
+          <FilterContainer />
+        </HStack>
+
+        <ScrollView showsVerticalScrollIndicators={false}>
+          {currentMenuType.value === 'veg' && (
+            <FullDetailsPizzaSection
+              mt={3}
+              verticalItem
+              fullDetails
+              filter={currentFilter}
+              {...{pizza: vegPizza}}
+            />
+          )}
+
+          {currentMenuType.value === 'non-veg' && (
+            <FullDetailsPizzaSection
+              mt={3}
+              verticalItem
+              fullDetails
+              {...{pizza: nonVegPizza}}
+            />
+          )}
+
+          {currentMenuType.value === 'beverages' && (
+            <DrinkSection mt={3} {...{beverages}} fullDetails />
+          )}
+        </ScrollView>
+      </SafeAreaView>
+    </VStack>
+  );
+}

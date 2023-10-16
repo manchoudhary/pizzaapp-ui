@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "app/assets/fonts/AirtelSansBold.ttf",
+      "sha1": "5c9ed6b14346a36cad9d7c31a9ac6347257a989c"
+    },
+    {
+      "path": "app/assets/fonts/AirtelSansRegular.ttf",
+      "sha1": "c194bfa7251deb18488f1c48f4d184b7336bc7ec"
+    },
+    {
+      "path": "app/assets/fonts/AirtelSansSemibold.ttf",
+      "sha1": "4c8225ac32678da523697f2659f8cbeeedb41f21"
+    }
+  ]
+}
