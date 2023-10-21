@@ -19,7 +19,7 @@ export default ({
             <Pressable
               flex={1}
               alignItems={'center'}
-              bg={isActive ? 'black' : 'transparent'}
+              bg={isActive ? '#1E5E77' : 'transparent'}
               border={isActive ? 'transparent' : 'black'}
               borderWidth={0.5}
               borderRadius={4}

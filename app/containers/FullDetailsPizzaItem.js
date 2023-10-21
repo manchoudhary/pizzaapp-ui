@@ -6,13 +6,15 @@ import Price from '../components/Price';
 import PizzaName from '../components/PizzaName';
 import {restUrls} from '../config';
 
-export default ({
+const FullDetailsPizzaItem = ({
+  itemId,
   name,
   description,
   size,
   price,
   type,
   fullDetails,
+  showSize,
   verticalItem,
   imageLocation,
   ...props
@@ -35,7 +37,7 @@ export default ({
   };
 
   const SizeLbl = () => {
-    if (!verticalItem && fullDetails) {
+    if ((!verticalItem && fullDetails) || showSize) {
       return (
         <Text fontSize={12} color={colors.black} fontWeight={'600'}>
           {size}
@@ -133,3 +135,8 @@ export default ({
     </Stack>
   );
 };
+
+export default React.memo(
+  FullDetailsPizzaItem,
+  (op, np) => op.itemId === np.itemId,
+);

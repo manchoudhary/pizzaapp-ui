@@ -34,9 +34,13 @@ export default function MenuList() {
             borderRadius={6}
             alignItems={'center'}
             justifyContent={'center'}>
-            <Text color={'white'} fontWeight={'bold'}>
-              F
-            </Text>
+            <CustomIcon
+              name={'FilterIcon'}
+              width={26}
+              height={26}
+              fill={'transparent'}
+              stroke={'white'}
+            />
           </Pressable>
         }>
         <VStack>
@@ -98,12 +102,17 @@ export default function MenuList() {
           <FilterContainer />
         </HStack>
 
+        <Text ml={4} color={colors.black6} fontSize={14}>
+          Which pizza are you craving for?
+        </Text>
+
         <ScrollView showsVerticalScrollIndicators={false}>
           {currentMenuType.value === 'veg' && (
             <FullDetailsPizzaSection
               mt={3}
               verticalItem
               fullDetails
+              showSize
               filter={currentFilter}
               {...{pizza: vegPizza}}
             />

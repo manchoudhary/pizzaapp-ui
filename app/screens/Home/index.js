@@ -27,6 +27,7 @@ import {
 import {useAppAccessor} from '../../hooks';
 import {useNavigation} from '@react-navigation/native';
 import UserModal from '../../containers/UserModal';
+import CarouselPizzaSection from '../../containers/CarouselPizzaSection';
 
 function Home() {
   const dispatch = useDispatch();
@@ -112,7 +113,7 @@ function Home() {
             {...{pizza: nonVegPizza}}
           />
           <DrinkSection label={'Drinks'} mt={3} viewAll {...{beverages}} />
-          <FullDetailsPizzaSection
+          <CarouselPizzaSection
             label={'Previously Ordered Items'}
             mt={3}
             verticalItem={false}

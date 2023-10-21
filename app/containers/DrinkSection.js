@@ -1,4 +1,4 @@
-import {VStack, FlatList} from 'native-base';
+import {VStack, FlatList, Stack} from 'native-base';
 import React from 'react';
 import DrinkItem from './DrinkItem';
 import PizzaSectionHeader from './PizzaSectionHeader';
@@ -20,7 +20,7 @@ export default ({label, beverages, fullDetails, viewAll, ...props}) => {
       />
 
       <FlatList
-        data={items}
+        data={items.length % 2 === 1 ? [...items, null] : items}
         numColumns={fullDetails ? 2 : 1}
         horizontal={fullDetails ? false : true}
         showsHorizontalScrollIndicator={false}
@@ -30,6 +30,7 @@ export default ({label, beverages, fullDetails, viewAll, ...props}) => {
           paddingRight: 16,
         }}
         renderItem={({item}) => {
+          if (!item) return <Stack flex={1} />;
           const {itemTitle, imageLocation} = item;
           const price = getPrice(item);
 

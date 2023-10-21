@@ -4,6 +4,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomIcon from '../../theme/icons/icon';
 import {useAppAccessor} from '../../hooks';
 import {FullDetailsPizzaSection} from '../../containers';
+import {colors} from '../../constants';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {fetchSearchItems} from './search.actions';
@@ -18,6 +19,7 @@ export default function Search() {
   const {loading, items} = getSearch();
 
   const [searchText, setSearchText] = useState();
+  const [searchedQuery, setSearchedQuery] = useState();
 
   useEffect(() => {
     dispatch({type: 'CLEAR_SEARCH'});
@@ -83,7 +85,10 @@ export default function Search() {
               borderLeftColor={'#858585'}
               borderLeftWidth={1}
               my={1}
-              onPress={() => dispatch(fetchSearchItems(searchText))}>
+              onPress={() => {
+                setSearchedQuery(searchText);
+                dispatch(fetchSearchItems(searchText));
+              }}>
               <CustomIcon
                 name={'SearchIcon'}
                 width={16}
@@ -97,6 +102,12 @@ export default function Search() {
 
         {!loading && (items ?? []).length === 0 && (
           <SearchSuggestionContainer />
+        )}
+
+        {!loading && (items ?? []).length > 0 && (
+          <Text ml={4} color={colors.text6}>
+            {`${(items ?? []).length} Search result for ${searchedQuery}`}
+          </Text>
         )}
 
         <FullDetailsPizzaSection
