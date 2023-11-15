@@ -16,7 +16,7 @@ export const getToppings = ({payload}) => {
   });
 };
 
-export const getSearchItems = ({payload}) => {
+export const getSearchItems = payload => {
   return apiGet({
     auth: {},
     route: `item/search/pizza`,

@@ -40,7 +40,7 @@ const FullDetailsPizzaItem = ({
     if ((!verticalItem && fullDetails) || showSize) {
       return (
         <Text fontSize={12} color={colors.black} fontWeight={'600'}>
-          {size}
+          {size}{' '}
         </Text>
       );
     }
@@ -60,7 +60,7 @@ const FullDetailsPizzaItem = ({
         mr={1}
         borderRadius={6}>
         <Text color={colors.white} fontWeight={'600'} fontSize={12}>
-          Add
+          Add{' '}
         </Text>
       </Pressable>
     );
@@ -81,7 +81,7 @@ const FullDetailsPizzaItem = ({
           borderRadius={6}
           {...props}>
           <Text color={colors.blue_royal} fontWeight={'600'} fontSize={12}>
-            Customise
+            Customise{' '}
           </Text>
         </Pressable>
       );
@@ -111,7 +111,7 @@ const FullDetailsPizzaItem = ({
             pr={4}
             pt={verticalItem ? 1 : 0}
             numberOfLines={4}>
-            {description}
+            {description}{' '}
           </Text>
         )}
 

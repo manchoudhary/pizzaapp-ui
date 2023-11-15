@@ -57,7 +57,7 @@ export default function ProductDetails() {
     return (
       <>
         <Text ml={4} color={colors.black8}>
-          Which crust do you prefer?
+          {'Which crust do you prefer? '}
         </Text>
         <ToggleSelector
           data={crusts}
@@ -70,7 +70,7 @@ export default function ProductDetails() {
                 crust,
               };
             });
-            setCurrentStep(steps.ORDER);
+            setCurrentStep(steps.TOPPINGS);
           }}
           containerProps={{m: 0, mx: 2}}
           itemContainerProps={{py: 3, mx: 2, my: 2}}
@@ -80,6 +80,7 @@ export default function ProductDetails() {
   };
 
   const handleOnChangeTopping = (topping, action) => {
+    setCurrentStep(steps.ORDER);
     setOrder(order => {
       let updatedToppings = [];
 
@@ -154,7 +155,7 @@ export default function ProductDetails() {
                 fontWeight={'400'}
                 numberOfLines={2}
                 mt={2}>
-                {description}
+                {`${description} `}
               </Text>
             )}
           </VStack>
@@ -187,9 +188,10 @@ export default function ProductDetails() {
             />
           )}
 
-          {currentStep >= steps.ORDER && (
+          {currentStep >= steps.TOPPINGS && (
             <OrderCounter
               onChange={orderCnt => {
+                setCurrentStep(steps.ORDER);
                 setOrder(order => {
                   return {
                     ...order,

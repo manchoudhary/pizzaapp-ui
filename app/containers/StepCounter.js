@@ -30,7 +30,7 @@ export default function StepCounter({stepsCount, currentStep}) {
               borderWidth={1}
               borderRadius={'full'}>
               <Text color={isActive ? colors.black : colors.black8}>
-                {step + 1}
+                {step + 1}{' '}
               </Text>
             </Center>
           );

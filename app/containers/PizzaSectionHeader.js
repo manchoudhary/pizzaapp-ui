@@ -16,7 +16,7 @@ export default function PizzaSectionHeader({
       <HStack justifyContent={'space-between'} mr={4}>
         {headerLabel && (
           <Text color={colors.blue_royal} fontSize={20} fontWeight={'800'}>
-            {headerLabel}
+            {headerLabel}{' '}
           </Text>
         )}
         {viewAll && (
@@ -25,14 +25,14 @@ export default function PizzaSectionHeader({
               navigation.navigate(screens.inside.bottomTabStack.menuList)
             }>
             <Text color={colors.blue_royal} fontSize={14} fontWeight={'400'}>
-              VIEW ALL
+              VIEW ALL{' '}
             </Text>
           </Pressable>
         )}
       </HStack>
       {description && (
         <Text color={colors.black9} fontSize={14} fontWeight={'500'}>
-          {description}
+          {description}{' '}
         </Text>
       )}
     </VStack>

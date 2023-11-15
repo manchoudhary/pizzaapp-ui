@@ -12,7 +12,7 @@ export const fetchSearchItems = query => {
     });
 
     getSearchItemsService({
-      query,
+      itemTitle: query,
     })
       .then(data => {
         dispatch({

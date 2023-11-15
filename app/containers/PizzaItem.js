@@ -30,7 +30,7 @@ export default ({
           color={colors.black8}
           fontWeight={'400'}
           numberOfLines={2}>
-          {description}
+          {description}{' '}
         </Text>
       )}
       <Price {...{price}} />

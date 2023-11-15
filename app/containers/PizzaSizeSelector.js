@@ -9,7 +9,7 @@ export default ({itemSizeMappings, onSelect}) => {
   const [currentSize, setCurrentSize] = useState();
   return (
     <VStack flex={1} m={4} space={4}>
-      <Text>Choose your pizza size</Text>
+      <Text>{'Choose your pizza size '}</Text>
       <HStack flex={1} space={4}>
         {pizzaSizes.map(item => {
           const isActive = currentSize?.sizeId === item.size.sizeId;
@@ -30,10 +30,10 @@ export default ({itemSizeMappings, onSelect}) => {
                 color={isActive ? colors.white : colors.black}
                 fontSize={12}
                 fontWeight={500}>
-                {item.size.sizeDetail}
+                {item.size.sizeDetail}{' '}
               </Text>
               <Text color={colors.black8} fontSize={12} fontWeight={500}>
-                {`(Serves ${item.size.sizeId})`}
+                {`(Serves ${item.size.sizeId})`}{' '}
               </Text>
               <Price
                 price={item.price}

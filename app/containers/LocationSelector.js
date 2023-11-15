@@ -18,7 +18,7 @@ export default ({location}) => {
             lineHeight={16}
             mt={1}
             mr={1}>
-            {locality}
+            {locality}{' '}
           </Text>
           <CustomIcon
             name={'DownSelectorIcon'}
@@ -33,7 +33,7 @@ export default ({location}) => {
           fontSize={12}
           fontWeight={400}
           lineHeight={16}>
-          {address}
+          {address}{' '}
         </Text>
       </VStack>
     </HStack>

@@ -90,11 +90,11 @@ function Home() {
 
           <Text mx={4}>
             <Text color={colors.black} fontSize={20} fontWeight={700}>
-              Hello there!
+              {'Hello there! '}
             </Text>
             <Text color={colors.black6} fontSize={14} fontWeight={400}>
               {'  '}
-              What do you want to eat?
+              {'What do you want to eat? '}
             </Text>
           </Text>
 

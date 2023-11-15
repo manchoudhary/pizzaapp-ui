@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {HStack, Pressable, ScrollView, Text, VStack} from 'native-base';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import Popover from 'react-native-popover-view';
 import CustomIcon from '../../theme/icons/icon';
-import {colors, menuTypes, priceFilterTypes} from '../../constants';
+import {colors, menuTypes, priceFilterTypes, screens} from '../../constants';
 import Header from '../../components/Header';
 import {
   DrinkSection,
@@ -17,10 +17,14 @@ export default function MenuList() {
   const {getHome} = useAppAccessor();
   const navigation = useNavigation();
 
-  const [currentMenuType, setCurrentMenuType] = useState(menuTypes[0]);
+  const {vegPizza, nonVegPizza, beverages, currentMenu} = getHome();
+
+  const [currentMenuType, setCurrentMenuType] = useState(currentMenu);
   const [currentFilter, setCurrentFilter] = useState(priceFilterTypes[0]);
 
-  const {vegPizza, nonVegPizza, beverages} = getHome();
+  useEffect(() => {
+    setCurrentMenuType(currentMenu);
+  }, [currentMenu]);
 
   const FilterContainer = () => {
     return (
@@ -49,12 +53,15 @@ export default function MenuList() {
               <Pressable
                 px={4}
                 py={2}
+                onPress={() => {
+                  setCurrentFilter(filter);
+                }}
                 bg={
                   currentFilter.value === filter.value
                     ? '#DDEDF3'
                     : 'transparent'
                 }>
-                <Text>{filter.label}</Text>
+                <Text>{`${filter.label} `}</Text>
               </Pressable>
             );
           })}
@@ -73,12 +80,14 @@ export default function MenuList() {
                 <CustomIcon name={'BackIcon'} width={14} height={14} />
               </Pressable>
               <Text color={colors.black} fontSize={20} ml={2}>
-                Pizzaroma Menu
+                {'Pizzaroma Menu '}
               </Text>
             </HStack>
           }
           right={
-            <HStack space={4} alignItems={'center'}>
+            <Pressable
+              justifyContent={'center'}
+              onPress={() => navigation.navigate(screens.inside.search)}>
               <CustomIcon
                 name={'SearchIcon'}
                 width={20}
@@ -86,7 +95,7 @@ export default function MenuList() {
                 fill={'transparent'}
                 stroke={'#1E5E77'}
               />
-            </HStack>
+            </Pressable>
           }
           my={2}
         />
@@ -103,7 +112,7 @@ export default function MenuList() {
         </HStack>
 
         <Text ml={4} color={colors.black6} fontSize={14}>
-          Which pizza are you craving for?
+          {'Which pizza are you craving for? '}
         </Text>
 
         <ScrollView showsVerticalScrollIndicators={false}>

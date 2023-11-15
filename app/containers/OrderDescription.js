@@ -29,12 +29,12 @@ const OrderDescription = ({order = {}}) => {
       <VStack flex={1} alignSelf={'flex-start'}>
         {(size || crust) && (
           <Text>
-            {[size?.size?.sizeDetail ?? '', crust?.label ?? ''].join(' | ')}
+            {[size?.size?.sizeDetail ?? '', crust?.label ?? ''].join(' | ')}{' '}
           </Text>
         )}
         {toppings && (
           <Text color={colors.black6} fontSize={12}>
-            Toppings : {toppings.map(topping => topping.title).join(', ')}
+            Toppings : {toppings.map(topping => topping.title).join(', ')}{' '}
           </Text>
         )}
         {price && (
@@ -54,7 +54,7 @@ const OrderDescription = ({order = {}}) => {
         mx={4}
         borderRadius={6}>
         <Text color={colors.white} fontWeight={'600'} fontSize={14}>
-          Add to cart
+          Add to cart{' '}
         </Text>
       </Pressable>
     </HStack>

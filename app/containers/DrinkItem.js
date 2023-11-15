@@ -43,7 +43,7 @@ export default ({
           color={colors.black}
           fontWeight={'600'}
           numberOfLines={1}>
-          {name}
+          {name}{' '}
         </Text>
         <Price {...{price}} textProps={{fontSize: 12}} />
       </VStack>
@@ -56,7 +56,7 @@ export default ({
         alignSelf={'flex-end'}
         borderRadius={6}>
         <Text color={colors.white} fontWeight={'600'} fontSize={12}>
-          Add
+          Add{' '}
         </Text>
       </Pressable>
     </VStack>

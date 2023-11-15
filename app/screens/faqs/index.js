@@ -15,7 +15,7 @@ export default function FAQs() {
             <CustomIcon name={'BackIcon'} width={14} height={14} />
           </Pressable>
           <Text ml={4} fontSize={14} fontWeight={'bold'}>
-            FAQs
+            {'FAQs '}
           </Text>
         </HStack>
       </SafeAreaView>

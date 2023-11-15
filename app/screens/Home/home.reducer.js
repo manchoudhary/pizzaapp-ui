@@ -1,3 +1,4 @@
+import {menuTypes} from '../../constants';
 import {
   GET_VEG_PIZZA_REQUEST,
   GET_VEG_PIZZA_FAILURE,
@@ -14,6 +15,7 @@ import {
   GET_RECOMMENDED_PIZZA_REQUEST,
   GET_RECOMMENDED_PIZZA_SUCCESS,
   GET_RECOMMENDED_PIZZA_FAILURE,
+  CHANGE_MENU_TYPE,
 } from './home.actionTypes';
 
 const initialState = {
@@ -37,6 +39,7 @@ const initialState = {
     loading: true,
     items: [],
   },
+  currentMenu: menuTypes[0],
 };
 
 export default function homeReducer(state = initialState, action) {
@@ -175,6 +178,14 @@ export default function homeReducer(state = initialState, action) {
           items: [],
         },
       };
+
+    case CHANGE_MENU_TYPE: {
+      console.log('here', action.payload);
+      return {
+        ...state,
+        currentMenu: action.payload,
+      };
+    }
     default:
       return state;
   }

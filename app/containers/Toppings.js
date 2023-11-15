@@ -74,7 +74,7 @@ export default function Toppings({toppings, onSelectTopping}) {
               />
             )}
           </Pressable>
-          <Text ml={2}>{topping.title}</Text>
+          <Text ml={2}>{`${topping.title} `} </Text>
         </HStack>
 
         <HStack>
@@ -92,7 +92,7 @@ export default function Toppings({toppings, onSelectTopping}) {
               );
             }}>
             <Text fontSize={20} lineHeight={20}>
-              +
+              +{' '}
             </Text>
           </Pressable>
           <Price
@@ -107,7 +107,7 @@ export default function Toppings({toppings, onSelectTopping}) {
 
   return (
     <VStack mx={4} mt={3}>
-      <Text color={colors.black8}>Choose your pizza toppings</Text>
+      <Text color={colors.black8}>{'Choose your pizza toppings '}</Text>
       <Stack ml={1} mt={2}>
         <PizzaName
           name={'Add Veg Toppings'}

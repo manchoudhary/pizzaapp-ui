@@ -29,7 +29,7 @@ export default ({
                 color={isActive ? colors.white : colors.black}
                 fontSize={12}
                 fontWeight={500}>
-                {item.label}
+                {item.label}{' '}
               </Text>
             </Pressable>
           );
@@ -65,7 +65,7 @@ export default ({
                 color={isActive ? colors.white : colors.black}
                 fontSize={12}
                 fontWeight={500}>
-                {item.label}
+                {item.label}{' '}
               </Text>
             </Pressable>
           );

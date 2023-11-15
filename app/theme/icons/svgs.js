@@ -116,21 +116,21 @@ export default {
       <G>
         <Path
           d="M16.0013 23.4087C21.9844 23.4087 26.8346 18.645 26.8346 12.7688C26.8346 6.89254 21.9844 2.12891 16.0013 2.12891C10.0182 2.12891 5.16797 6.89254 5.16797 12.7688C5.16797 18.645 10.0182 23.4087 16.0013 23.4087Z"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <Path
           d="M19.25 9.57422L12.75 15.9581"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <Path
           d="M12.75 9.57422L19.25 15.9581"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </G>
     ),

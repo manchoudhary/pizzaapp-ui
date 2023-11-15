@@ -26,7 +26,7 @@ export default ({
         fontWeight={'600'}
         ml={1}
         {...textProps}>
-        {price}
+        {price}{' '}
       </Text>
     </HStack>
   );

@@ -1,4 +1,12 @@
-import {HStack, Input, Text, VStack, Pressable, Divider} from 'native-base';
+import {
+  HStack,
+  Input,
+  Text,
+  VStack,
+  Pressable,
+  Divider,
+  Spinner,
+} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomIcon from '../../theme/icons/icon';
@@ -8,6 +16,7 @@ import {colors} from '../../constants';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {fetchSearchItems} from './search.actions';
+import {ActivityIndicator} from 'react-native';
 
 const suggestions = ['Margherita', 'Chicken Pizza', 'Drinks'];
 
@@ -28,7 +37,7 @@ export default function Search() {
   const SearchSuggestionContainer = () => {
     return (
       <VStack mx={4} mt={3}>
-        <Text>Popular Searches</Text>
+        <Text>{'Popular Searches '}</Text>
         {suggestions.map((suggestion, index) => {
           return (
             <>
@@ -106,17 +115,25 @@ export default function Search() {
 
         {!loading && (items ?? []).length > 0 && (
           <Text ml={4} color={colors.text6}>
-            {`${(items ?? []).length} Search result for ${searchedQuery}`}
+            {`${(items ?? []).length} Search result for ${searchedQuery}`}{' '}
           </Text>
         )}
 
-        <FullDetailsPizzaSection
-          mt={3}
-          verticalItem
-          fullDetails
-          viewAll={false}
-          {...{pizza: {loading, items}, searchText}}
-        />
+        {loading && (
+          <VStack flex={1} alignItems={'center'} justifyContent={'center'}>
+            <ActivityIndicator />
+          </VStack>
+        )}
+
+        {!loading && (items ?? []).length > 0 && (
+          <FullDetailsPizzaSection
+            mt={3}
+            verticalItem
+            fullDetails
+            viewAll={false}
+            {...{pizza: {loading, items}, searchText}}
+          />
+        )}
       </SafeAreaView>
     </VStack>
   );

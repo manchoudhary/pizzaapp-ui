@@ -7,7 +7,7 @@ const OrderCounter = ({onChange}) => {
   const [counter, setCounter] = useState(1);
   return (
     <VStack ml={4} mb={4}>
-      <Text color={colors.black8}>How many orders?</Text>
+      <Text color={colors.black8}>{'How many orders? '}</Text>
 
       <HStack mt={2}>
         <Pressable
@@ -41,7 +41,7 @@ const OrderCounter = ({onChange}) => {
           alignItems={'center'}
           justifyContent={'center'}>
           <Text color={'white'} fontSize={18} fontWeight={'600'}>
-            {counter}
+            {counter}{' '}
           </Text>
         </Pressable>
         <Pressable

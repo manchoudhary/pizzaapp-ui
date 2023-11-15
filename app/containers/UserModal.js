@@ -26,7 +26,7 @@ export default function UserModal({visible, onClose}) {
             fill={'transparent'}
             stroke={'black'}
           />
-          <Text ml={4}>{label}</Text>
+          <Text ml={4}>{`${label} `}</Text>
         </HStack>
       </Pressable>
     );
@@ -56,10 +56,10 @@ export default function UserModal({visible, onClose}) {
             />
             <VStack flex={1} ml={4}>
               <Text color={'#1E5E77'} fontWeight={'bold'}>
-                Hi! Guest!
+                {'Hi! Guest! '}
               </Text>
               <Text color={'#858585'} fontSize={10}>
-                Login for exclusive deals and many more
+                {'Login for exclusive deals and many more '}
               </Text>
             </VStack>
 
@@ -73,7 +73,7 @@ export default function UserModal({visible, onClose}) {
               mr={1}
               borderRadius={6}>
               <Text color={colors.white} fontWeight={'600'} fontSize={12}>
-                Login
+                {'Login '}
               </Text>
             </Pressable>
           </HStack>

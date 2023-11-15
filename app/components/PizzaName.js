@@ -29,7 +29,7 @@ export default ({
         mt={0.5}
         numberOfLines={1}
         {...textProps}>
-        {name}
+        {name}{' '}
       </Text>
     </HStack>
   );
