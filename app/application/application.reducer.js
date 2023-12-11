@@ -1,8 +1,9 @@
 import {roots} from '../constants';
-import {APP_START, AUTH_VERIFIED} from './application.actionsTypes';
+import {APP_START, AUTH_VERIFIED, TOGGLE_MIC} from './application.actionsTypes';
 
 const initialState = {
   root: roots.INSIDE,
+  showMic: false,
 };
 
 export default function applicationReducer(state = initialState, action) {
@@ -14,6 +15,13 @@ export default function applicationReducer(state = initialState, action) {
       };
 
     case AUTH_VERIFIED:
+      return {
+        ...state,
+        ...action.payload,
+      };
+
+    case TOGGLE_MIC:
+      console.log('toggle mic', action.payload);
       return {
         ...state,
         ...action.payload,

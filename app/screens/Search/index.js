@@ -13,7 +13,7 @@ import CustomIcon from '../../theme/icons/icon';
 import {useAppAccessor} from '../../hooks';
 import {FullDetailsPizzaSection} from '../../containers';
 import {colors} from '../../constants';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {fetchSearchItems} from './search.actions';
 import {ActivityIndicator} from 'react-native';
@@ -24,14 +24,22 @@ export default function Search() {
   const {getSearch} = useAppAccessor();
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const route = useRoute();
+
+  const query = route?.params?.query;
 
   const {loading, items} = getSearch();
 
-  const [searchText, setSearchText] = useState();
+  const [searchText, setSearchText] = useState(query);
   const [searchedQuery, setSearchedQuery] = useState();
 
   useEffect(() => {
     dispatch({type: 'CLEAR_SEARCH'});
+
+    if (query) {
+      setSearchedQuery(query);
+      dispatch(fetchSearchItems(query));
+    }
   }, []);
 
   const SearchSuggestionContainer = () => {

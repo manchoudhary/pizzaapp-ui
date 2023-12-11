@@ -4,9 +4,18 @@ import CustomIcon from '../../../theme/icons/icon';
 import {colors, screens} from '../../../constants';
 import MenuListFilterModal from '../../../containers/MenuListFilterModal';
 import {HStack, VStack} from 'native-base';
+import MicContainer from '../../../containers/MicContainer';
+import {useAppAccessor} from '../../../hooks';
+import {useDispatch} from 'react-redux';
+import {toggleMic} from '../../../application/application.actions';
 
 const HomeTabBar = ({state, descriptors, navigation}) => {
   const [showMenuListModal, setShowMenuListModal] = useState(false);
+
+  const {getApplication} = useAppAccessor();
+  const dispatch = useDispatch();
+
+  const {showMic} = getApplication();
 
   return (
     <VStack bg={showMenuListModal ? 'white' : 'transparent'}>
@@ -14,6 +23,7 @@ const HomeTabBar = ({state, descriptors, navigation}) => {
         visible={showMenuListModal}
         onClose={() => setShowMenuListModal(false)}
       />
+
       <HStack shadow={8} mt={showMenuListModal ? 2 : 0}>
         {state.routes.map((route, index) => {
           const {options} = descriptors[route.key];

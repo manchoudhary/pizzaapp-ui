@@ -142,6 +142,26 @@ function Home() {
           visible={showUserModal}
           onClose={() => setShowUserModal(false)}
         />
+
+        {/* <Pressable
+          bg={colors.blue_royal}
+          position={'absolute'}
+          right={0}
+          bottom={0}
+          p={4}
+          m={4}
+          borderRadius={'full'}
+          onPress={() => {
+            dispatch(toggleMic(true));
+          }}>
+          <CustomIcon
+            name={'MicIcon'}
+            width={30}
+            height={30}
+            fill={colors.blue_royal}
+            stroke={colors.white}
+          />
+        </Pressable> */}
       </SafeAreaView>
     </VStack>
   );

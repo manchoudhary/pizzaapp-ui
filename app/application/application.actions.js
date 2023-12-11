@@ -1,6 +1,6 @@
 import {roots, storageKeys} from '../constants';
 import {getBoolAsync, getJsonAsync} from '../lib/storage';
-import {APP_START} from './application.actionsTypes';
+import {APP_START, TOGGLE_MIC} from './application.actionsTypes';
 
 export function appInit() {
   return async dispatch => {
@@ -34,3 +34,14 @@ export function appInit() {
     }
   };
 }
+
+export const toggleMic = action => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_MIC,
+      payload: {
+        showMic: action,
+      },
+    });
+  };
+};
