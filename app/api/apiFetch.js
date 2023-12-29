@@ -20,3 +20,10 @@ export const apiFetch = async (auth, route, params) => {
     ...getFetchParams(auth, params),
   });
 };
+
+// export const fullApiFetch = async (auth, route, params) => {
+//   console.log(`${baseURL}`);
+//   return fetch(`${baseURL}`, {
+//     ...getFetchParams(auth, params),
+//   });
+// };

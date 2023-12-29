@@ -12,6 +12,7 @@ import {toggleMic} from '../../application/application.actions';
 import {useNavigation} from '@react-navigation/native';
 import CustomIcon from '../../theme/icons/icon';
 import {Pressable} from 'native-base';
+import { Image } from 'react-native';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -69,24 +70,21 @@ function InsideStack({navigation}) {
       </MainStack.Navigator>
 
       <Pressable
-        bg={colors.blue_royal}
+        bg={colors.white}
         position={'absolute'}
         right={0}
         bottom={0}
-        p={4}
-        mr={4}
+        // p={1}
+        mr={2}
         mb={16}
         borderRadius={'full'}
         onPress={() => {
           setShowMic(true);
         }}>
-        <CustomIcon
-          name={'MicIcon'}
-          width={30}
-          height={30}
-          fill={colors.blue_royal}
-          stroke={colors.white}
-        />
+        <Image
+          source={require('./../../assets/icons/voiceIcon.png')}
+          style={{height: 55, width: 55}}
+          resizeMode="contain"></Image>
       </Pressable>
     </>
   );

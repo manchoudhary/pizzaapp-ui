@@ -1,9 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {VStack, HStack, Text, Pressable} from 'native-base';
-import {colors} from '../constants';
-import Price from '../components/Price';
+import {useNavigation} from '@react-navigation/native';
+import Price from '../../components/Price';
+import {colors, screens} from '../../constants';
+import {connect} from 'react-redux';
+import {getCardData} from './orderDescription.action';
 
-const OrderDescription = ({order = {}}) => {
+const OrderDescription = ({order, pizzaDetails}) => {
+  // order = {};
+  const navigation = useNavigation();
   const {size, crust, toppings, orderCnt} = order;
   const [price, setPrice] = useState();
 
@@ -23,7 +28,9 @@ const OrderDescription = ({order = {}}) => {
   useEffect(() => {
     setPrice(getPrice());
   }, [order]);
-
+  const cartScreenKey = screens.inside.bottomTabStack.cart;
+  console.log('pizzaDetails>>>', pizzaDetails);
+  console.log('order>>>', order);
   return (
     <HStack bg={'white'} shadow={4} flex={1} p={4} alignItems={'flex-end'}>
       <VStack flex={1} alignSelf={'flex-start'}>
@@ -46,6 +53,11 @@ const OrderDescription = ({order = {}}) => {
         )}
       </VStack>
       <Pressable
+        onPress={() => {
+          // props.getCardData(order);
+          // navigation.navigate(screens.inside.bottomTabStack.cart(order));
+          navigation.navigate(cartScreenKey, {pizzaDetails, order});
+        }}
         bg={colors.blue_royal}
         py={2}
         px={2}
@@ -61,4 +73,7 @@ const OrderDescription = ({order = {}}) => {
   );
 };
 
-export default OrderDescription;
+const dispatchToProps = dispatch => ({
+  getCardData: payload => dispatch(getCardData(payload)),
+});
+export default connect(dispatchToProps)(OrderDescription);

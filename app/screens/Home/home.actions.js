@@ -14,6 +14,9 @@ import {
   GET_RECOMMENDED_PIZZA_FAILURE,
   GET_RECOMMENDED_PIZZA_REQUEST,
   GET_RECOMMENDED_PIZZA_SUCCESS,
+  GET_SPEECH_TO_TEXT,
+  GET_SPEECH_TO_TEXT_SUCCESS,
+  GET_SPEECH_TO_TEXT_FAILURE,
 } from './home.actionTypes';
 import {getPizza as getPizzaService} from '../../services/home.service';
 import {Alert} from 'react-native';
@@ -150,6 +153,32 @@ export function getRecommended() {
         console.log(error);
         dispatch({
           type: GET_RECOMMENDED_PIZZA_FAILURE,
+        });
+        return null;
+      });
+  };
+}
+export function getSpeechToText() {
+  return async dispatch => {
+    dispatch({
+      type: GET_SPEECH_TO_TEXT,
+    });
+
+    return getPizzaService({
+      category: 'pizza',
+      payload: {recommended: true},
+    })
+      .then(({data}) => {
+        dispatch({
+          type: GET_SPEECH_TO_TEXT_SUCCESS,
+          payload: data,
+        });
+        return null;
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch({
+          type: GET_SPEECH_TO_TEXT_FAILURE,
         });
         return null;
       });

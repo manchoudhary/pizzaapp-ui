@@ -23,3 +23,12 @@ export const getSearchItems = payload => {
     params: payload,
   });
 };
+
+
+export const getSpeechToText = payload => {
+  return apiGet({
+    auth: {},
+    route: `https://dev.voicexp.ai/voice-controller/voice/process`,
+    params: payload,
+  });
+};

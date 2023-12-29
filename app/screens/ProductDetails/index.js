@@ -24,7 +24,7 @@ import {fetchToppings} from './productDetails.actions';
 import {useAppAccessor} from '../../hooks';
 import Toppings from '../../containers/Toppings';
 import OrderCounter from '../../containers/OrderCounter';
-import OrderDescription from '../../containers/OrderDescription';
+import OrderDescription from '../OrderDescription';
 
 const steps = {
   SIZE: 1,
@@ -118,7 +118,6 @@ export default function ProductDetails() {
       };
     });
   };
-
   return (
     <VStack flex={1} bg={'white'}>
       <SafeAreaView style={{flex: 1}}>
@@ -205,7 +204,7 @@ export default function ProductDetails() {
 
         {order && (
           <HStack>
-            <OrderDescription {...{order}} />
+            <OrderDescription {...{pizzaDetails}} {...{order}} />
           </HStack>
         )}
       </SafeAreaView>

@@ -16,6 +16,9 @@ import {
   GET_RECOMMENDED_PIZZA_SUCCESS,
   GET_RECOMMENDED_PIZZA_FAILURE,
   CHANGE_MENU_TYPE,
+  GET_SPEECH_TO_TEXT,
+  GET_SPEECH_TO_TEXT_SUCCESS,
+  GET_SPEECH_TO_TEXT_FAILURE,
 } from './home.actionTypes';
 
 const initialState = {
@@ -36,6 +39,10 @@ const initialState = {
     items: [],
   },
   recommended: {
+    loading: true,
+    items: [],
+  },
+  speechToTextData: {
     loading: true,
     items: [],
   },
@@ -174,6 +181,32 @@ export default function homeReducer(state = initialState, action) {
       return {
         ...state,
         recommended: {
+          loading: false,
+          items: [],
+        },
+      };
+    case GET_SPEECH_TO_TEXT:
+      return {
+        ...state,
+        speechToTextData: {
+          loading: true,
+          items: [],
+        },
+      };
+
+    case GET_SPEECH_TO_TEXT_SUCCESS:
+      return {
+        ...state,
+        speechToTextData: {
+          loading: false,
+          items: action.payload,
+        },
+      };
+
+    case GET_SPEECH_TO_TEXT_FAILURE:
+      return {
+        ...state,
+        speechToTextData: {
           loading: false,
           items: [],
         },
