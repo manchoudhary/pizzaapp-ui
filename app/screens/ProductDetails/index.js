@@ -204,7 +204,7 @@ export default function ProductDetails() {
 
         {order && (
           <HStack>
-            <OrderDescription {...{pizzaDetails}} {...{order}} />
+            <OrderDescription {...{pizzaDetails}} {...{order}}  />
           </HStack>
         )}
       </SafeAreaView>

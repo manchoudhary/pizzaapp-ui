@@ -4,18 +4,19 @@ import {colors} from '../constants';
 import Price from '../components/Price';
 import {restUrls} from '../config';
 import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import CustomIcon from '../theme/icons/icon';
 
 const cartItem = props => {
   const [count, setCount] = useState(1);
+  const [expanded, setExpanded] = useState(false);
+
   console.log(
     'props cartItem:>> ' +
       JSON.stringify(props.route.params.pizzaDetails.imageLocation),
   );
   // const pizzaDetails = JSON.stringify(props.route.params);
-  console.log(
-    'pizzaDetails..>>',
-    props.route.params.order.size.size.sizeDetail,
-  );
+  console.log('pizzaDetails..>>', props.route.params);
   const increment = () => {
     setCount(prevCount => prevCount + 1);
   };
@@ -26,9 +27,21 @@ const cartItem = props => {
   return (
     <View style={styles.container}>
       <View style={styles.cardView}>
-        <Image
+        {props.route.params.pizzaDetails.type !== 'none' && (
+          <CustomIcon
+            name={
+              props.route.params.pizzaDetails.type ? 'VegIcon' : 'NonVegIcon'
+            }
+            width={12}
+            height={14}
+            fill={'transparent'}
+            style={styles.vegStyle}
+            // {...iconProps}
+          />
+        )}
+        {/* <Image
           source={require('./../assets/icons/VegIcon.png')}
-          style={styles.vegStyle}></Image>
+          style={styles.vegStyle}></Image> */}
         <Image
           style={styles.imageContainer}
           resizeMode="contain"
@@ -72,23 +85,54 @@ const cartItem = props => {
           </Text>
         </View>
       </View>
+
+      <View style={styles.expandViewContainer}>
+        <TouchableOpacity
+          style={styles.header}
+          onPress={() => setExpanded(!expanded)}>
+          <Text style={styles.headerText}>
+            Product details and Customisation
+          </Text>
+          <Icon
+            name={expanded ? 'angle-up' : 'angle-down'}
+            size={16}
+            color="black"
+          />
+        </TouchableOpacity>
+        <View style={styles.horizontalLine}></View>
+        {expanded && (
+          <View style={styles.content}>
+            <Text>{props?.route?.params?.pizzaDetails?.description}</Text>
+            <Text style={styles.titleStyle}>Your Customization:</Text>
+            {props?.route?.params?.order?.toppings && (
+              <Text>
+                Toppings:{' '}
+                {props?.route?.params?.order?.toppings
+                  .map(e => e.title)
+                  .join(', ')}
+              </Text>
+            )}
+          </View>
+        )}
+      </View>
     </View>
   );
 };
 export default cartItem;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    borderRadius: 20,
-    backgroundColor: '#fff',
-  },
-  cardView: {
     // flex: 1,
-    padding: 10,
+    // borderRadius: 20,
+    // backgroundColor: '#3543',
+    padding: 5,
     borderRadius: 10,
     backgroundColor: '#fff',
     elevation: 10,
     margin: 10,
+  },
+  cardView: {
+    // flex: 1,
+
     flexDirection: 'row',
   },
   imageContainer: {
@@ -141,6 +185,37 @@ const styles = StyleSheet.create({
   thirdContainer: {
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-    marginLeft: 50,
+    // marginLeft: 50,
+  },
+  expandViewContainer: {
+    backgroundColor: '#DDEDF3',
+    borderRadius: 5,
+    paddingHorizontal: 5,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 3,
+    marginTop: 20,
+    marginHorizontal: 15,
+    marginBottom:10
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // marginBottom: 10,
+    padding: 10,
+    alignItems: 'center',
+  },
+  headerText: {
+    fontWeight: 'bold',
+  },
+  content: {
+    padding: 10,
+  },
+  horizontalLine: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#D9D9D9', // You can change the color to your preference
+    // marginVertical: 10, // Adjust as needed
   },
 });
